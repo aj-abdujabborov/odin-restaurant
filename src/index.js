@@ -4,30 +4,23 @@ import getHeader from "./header.js";
 import { getMenu } from "./menu.js";
 import { getFindUs } from "./findUs.js";
 
-const divContent = document.querySelector("div#content");
-let currentDiv;
+const outerDiv = document.querySelector("div#content");
 
 const header = getHeader(3);
-header.buttonsArray[0].textContent = "Home";
-header.buttonsArray[0].addEventListener('click', () => {
-    currentDiv.remove();
-    currentDiv = getHome();
-    divContent.append(currentDiv);
-});
-header.buttonsArray[1].textContent = "Menu";
-header.buttonsArray[1].addEventListener('click', () => {
-    currentDiv.remove();
-    currentDiv = getMenu();
-    divContent.append(currentDiv);
-});
-header.buttonsArray[2].textContent = "Find Us";
-header.buttonsArray[2].addEventListener('click', () => {
-    currentDiv.remove();
-    currentDiv = getFindUs();
-    divContent.append(currentDiv);
-})
+outerDiv.append(header.div);
 
-divContent.append(header.div);
+setupButton(header.buttonsArray[0], "Home", getHome);
+setupButton(header.buttonsArray[1], "Menu", getMenu);
+setupButton(header.buttonsArray[2], "Find Us", getFindUs);
 
-currentDiv = getHome();
-divContent.append(currentDiv);
+let currentDiv = getHome();
+outerDiv.append(currentDiv);
+
+function setupButton(button, name, page) {
+    button.textContent = name;
+    button.addEventListener('click', () => {
+        currentDiv.remove();
+        currentDiv = page();
+        outerDiv.append(currentDiv);
+    });
+}
