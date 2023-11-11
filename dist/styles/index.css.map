@@ -1,0 +1,1 @@
+{"version":3,"file":"styles/index.css","mappings":"AAAA;IACI,oBAAoB;AACxB,C","sources":["webpack://odin-restaurant/./src/style.css"],"sourcesContent":["body {\n    background: cornsilk;\n}"],"names":[],"sourceRoot":""}
