@@ -1,16 +1,33 @@
-import "./style.css"
-import Image from "./Palace+Grill+Restaurant-100.jpg"
+import "./style.css";
+import getHome from './home.js';
+import getHeader from "./header.js";
+import { getMenu } from "./menu.js";
+import { getFindUs } from "./findUs.js";
 
 const divContent = document.querySelector("div#content");
-const h1 = document.createElement('h1');
-const p = document.createElement('p');
-const img = document.createElement('img');
+let currentDiv;
 
-h1.textContent = 'Nexus Roadhouse';
-p.textContent = "We hope you have a great time at the nexus between amazing flavor and texture. We're located on highway 49.";
-img.src = Image;
-img.alt = "grilled foods";
+const header = getHeader(3);
+header.buttonsArray[0].textContent = "Home";
+header.buttonsArray[0].addEventListener('click', () => {
+    currentDiv.remove();
+    currentDiv = getHome();
+    divContent.append(currentDiv);
+});
+header.buttonsArray[1].textContent = "Menu";
+header.buttonsArray[1].addEventListener('click', () => {
+    currentDiv.remove();
+    currentDiv = getMenu();
+    divContent.append(currentDiv);
+});
+header.buttonsArray[2].textContent = "Find Us";
+header.buttonsArray[2].addEventListener('click', () => {
+    currentDiv.remove();
+    currentDiv = getFindUs();
+    divContent.append(currentDiv);
+})
 
-divContent.append(h1, p, img);
+divContent.append(header.div);
 
-
+currentDiv = getHome();
+divContent.append(currentDiv);
